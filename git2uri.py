@@ -6,25 +6,7 @@ from submission import Submission
 
 repositoryName = "repo"
 
-endings = {"C": "c", 
-            "C#": "cs",
-            "C++": "cpp",
-            "C++17": "cpp", 
-            "C99": "c",     #verificar 
-            "Go": "go",
-            "Haskell": "hs",
-            "Java7": "java",
-            "Java8": "java",
-            "JavaScript": "js",
-            "Kotlin":  "kt",
-            "Lua": "lua",
-            "OCaml": "ml",
-            "Pascal": "pas",
-            "Python 2": "py",
-            "Python 3": "py",
-            "Ruby": "rb",
-            "Scala": "scl",
-            "PostgreSQL": "sql"}
+
 
 #def __init__(self, id, nome, result, data, language, version, code):
 
@@ -46,7 +28,7 @@ if not os.path.exists("repo/Python 3"):
 	os.mkdir("repo/Python 3")
 	
 
-submissionFile = open("{}/{}/{}.{}".format(repositoryName, teste.language, teste.id, endings[teste.language]), "w+")
+submissionFile = open("{}/{}/{}.{}".format(repositoryName, teste.language, teste.id, teste.ending), "w+")
 teste.createfile(submissionFile)
 
 submissionFile.close()

@@ -18,9 +18,30 @@ comment = {"C": [line, "//"],
             "Scala": [line, "//"],
             "PostgreSQL": [line, "--"]}
 
+endings = {"C": "c", 
+            "C#": "cs",
+            "C++": "cpp",
+            "C++17": "cpp", 
+            "C99": "c",     #verificar 
+            "Go": "go",
+            "Haskell": "hs",
+            "Java7": "java",
+            "Java8": "java",
+            "JavaScript": "js",
+            "Kotlin":  "kt",
+            "Lua": "lua",
+            "OCaml": "ml",
+            "Pascal": "pas",
+            "Python 2": "py",
+            "Python 3": "py",
+            "Ruby": "rb",
+            "Scala": "scl",
+            "PostgreSQL": "sql"}
+
 class Submission:
     def __init__(self, id, nome, result, data, language, version, code):
         self.id = id
+        self.ending = endings[language]
         self.nome = nome
         self.result = result
         self.data = data
