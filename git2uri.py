@@ -1,7 +1,7 @@
 import json
 import shutil
 import os
-from git import Repo, IndexFile
+from git import *
 from submission import Submission
 
 repositoryName = "repo"
@@ -58,5 +58,6 @@ print(repo.working_tree_dir)
 print(repo.working_dir)
 print(repo._working_tree_dir)
 repo.index.add([filepath])
-repo.index.commit("Botando o arquivo 2500.py")
-print(repo.head)
+#comm = Commit(repo, Commit.NULL_BIN_SHA, repo.index.write_tree(),
+#repo.index.commit("Botando o arquivo 2500.py", )
+#print(repo.head)

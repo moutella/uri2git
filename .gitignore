@@ -1,2 +1,3 @@
 auths
-__pycache__/submission.cpython-36.pyc
+__pycache__/*
+.vscode/*
