@@ -3,9 +3,31 @@ from bs4 import *
 import os
 import json
 
+
+class uriUser():
+    def __init__(self, userEmail, password):
+        self.userEmail = userEmail
+        self.password = password
+    
+    def login(self, userEmail, password):
+        siteBase = session.get(url)
+        siteSoup = BeautifulSoup(siteBase.text, features="html.parser")
+        tagsHidden = siteSoup.find_all("input", type="hidden")
+        valores = pegavalores(tagsHidden)
+        payload = {"email": email, "password": senha, "remember_me": "0"}
+        payload.update(valores)
+        #print(payload)
+        urlLogin = "https://www.urionlinejudge.com.br/judge/en/login"
+        resultadoLogin = session.post(urlLogin,
+                                        data = payload,
+                                        headers = dict(referer=urlLogin))
+
+
+
+
 email = ''
 senha = ''
-with open('auths') as auth:
+with open('config') as auth:
     dados = json.load(auth)
     email = dados['uri'][0]['user-email']
     senha = dados['uri'][0]['password']
@@ -38,8 +60,8 @@ resultadoLogin = session.post(urlLogin,
 ## --- BLOCO DE PEGAR TODOS OS ENVIOS ---
 urlSubmissions = "https://www.urionlinejudge.com.br/judge/pt/runs"
 submissionsPage = session.get(urlSubmissions)
-print(submissionsPage.text)
+#print(submissionsPage.text)
 envioSoup = BeautifulSoup(submissionsPage.text, features="html.parser")
 enviosDaPagina = envioSoup.find_all("tr")
-for envio in enviosDaPagina[1:]:
-    print(envio.a)
+for envio in enviosDaPagina[-1:0:-1]:
+    print(envio.a.get('href').split("/")[-1])

@@ -1,3 +1,4 @@
 auths
 __pycache__/*
 .vscode/*
+config
