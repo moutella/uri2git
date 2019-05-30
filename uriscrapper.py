@@ -2,6 +2,7 @@ from requests import post, get, session
 from bs4 import *
 import os
 from submission import Submission
+import datetime
 
 
 class uriUser():
@@ -52,6 +53,8 @@ class uriUser():
                 submission = self.criaSubmission(envio.a.text)
                 submissions.append(submission)
         return submissions
+
+
     def criaSubmission(self, id):
         urlSubmission = "https://www.urionlinejudge.com.br/judge/pt/runs/code/" + id
         submissionPage = self.sess.get(urlSubmission)
@@ -67,3 +70,16 @@ class uriUser():
         code = codeLines.text
         submission = Submission(id, nome, resultado, data, language, code)
         return submission
+
+def retornaDataDaString(dataCompleta):
+    dataCompleta = dataCompleta.split(" ")
+    data = dataCompleta[0].split("/")
+    dia = int(data[0])
+    mes = int(data[1])
+    ano= int(data[2]) + 2000
+    momento = dataCompleta[1].split(":")
+    hora = int(momento[0])
+    minuto = int(momento[1])
+    segundo = int(momento[2])
+    valorData = datetime.datetime(ano,mes,dia,hora,minuto,segundo)
+    return valorData
